@@ -1,3 +1,5 @@
+// https://github.com/mikach/requirejs-babel/blob/master/es6.js
+
 var fetchText, _buildMap = {};
 
 //>>excludeStart('excludeBabel', pragmas.excludeBabel)
@@ -41,6 +43,7 @@ define([
             //>>excludeStart('excludeBabel', pragmas.excludeBabel)
             function applyOptions(options) {
                 var defaults = {
+                    appendSuffix: true,
                     modules: 'amd',
                     sourceMap: config.isBuild ? false :'inline',
                     sourceFileName: name
@@ -52,10 +55,13 @@ define([
                 }
                 return defaults;
             }
-            var url = req.toUrl(name);
+            var options = applyOptions(_module.config());
+            var fileName = options.appendSuffix ? name + '.js' : name;
+            delete options['appendSuffix'];
+            var url = req.toUrl(fileName);
 
             fetchText(url, function (text) {
-                var code = babel.transform(text, applyOptions(_module.config())).code;
+                var code = babel.transform(text, options).code;
 
                 if (config.isBuild) {
                     _buildMap[name] = code;
