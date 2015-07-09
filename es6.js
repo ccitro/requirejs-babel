@@ -52,7 +52,7 @@ define([
                 }
                 return defaults;
             }
-            var url = req.toUrl(name + '.js');
+            var url = req.toUrl(name);
 
             fetchText(url, function (text) {
                 var code = babel.transform(text, applyOptions(_module.config())).code;
