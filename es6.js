@@ -1,4 +1,6 @@
-// https://github.com/mikach/requirejs-babel/blob/master/es6.js
+// https://github.com/ccitro/requirejs-babel/blob/master/es6.js
+// originally: https://github.com/mikach/requirejs-babel/blob/master/es6.js
+// cannot be minified before r.js runs - the exclude pragmas are important
 
 var fetchText, _buildMap = {};
 
