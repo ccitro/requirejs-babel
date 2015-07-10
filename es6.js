@@ -12,7 +12,7 @@ if (typeof window !== "undefined" && window.navigator && window.document) {
         xhr.onreadystatechange = function (evt) {
             //Do not explicitly handle errors, those should be
             //visible via console output in the browser.
-            if (xhr.readyState === 4) {
+            if (xhr.readyState === 4 && xhr.status < 400) {
                 callback(xhr.responseText);
             }
         };
